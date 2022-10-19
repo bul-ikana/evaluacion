@@ -9,4 +9,5 @@ class Comentario extends Model
 {
     use HasFactory;
     protected $table = 'comentarios';
+    protected $connection = 'mysql';
 }
