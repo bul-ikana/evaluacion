@@ -18,6 +18,10 @@ class ProfesorSeeder extends Seeder
      */
     public function run()
     {
+        if (Profesor::count()) {
+            return;
+        }
+        
         Profesor::factory()->create([
             'nombre' => 'Alfonso Estrada',
         ]);
