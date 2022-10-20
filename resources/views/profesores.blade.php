@@ -19,14 +19,43 @@
   <div class="container">
     <div class="row">
       @foreach($profesores as $profe)
-        <div class="col-4">
-          <div class="card mx-3">
+        <div class="col-xl-4 col-md-6">
+          <div class="card mx-3 mb-0 mt-3">
             <div class="card-body">
               <h5 class="card-title">{{$profe->nombre}} <span class="badge badge-secondary float-right"> {{$profe->promedio}}</span></h5>
               <p class="card-text">Profesor de la facultad de economía.</p>
-              <a href="evalua/{{$profe->id}}" class="btn btn-primary">Evalúa</a>
+              <a href="evalua/{{$profe->id}}" class="btn btn-primary float-right">Evalúa</a>
+              <a href="#" class="float-left pt-2" data-toggle="collapse" data-target="#collapse{{$profe->id}}" aria-expanded="false" aria-controls="collapse">{{$profe->comentarios->count()}} {{Str::plural('Comentario', $profe->comentarios->count())}}</a>
             </div>
           </div>
+          @if ($profe->comentarios->count() > 0)
+          <div class="collapse" id="collapse{{$profe->id}}">
+            <div id="carousel{{$profe->id}}" class="card carousel slide mx-3 mt-2" data-ride="carousel" style="height:250px">
+              <div class="card-body carousel-inner">
+                @foreach($profe->comentarios as $comentario)
+                  @if ($loop->first)
+                    <div class="carousel-item active">
+                  @else
+                    <div class="carousel-item">
+                  @endif
+                    <h5 class="card-title">{{$comentario->nombre_estudiante}}</h5>
+                    <p class="card-text">{{$comentario->comentario }}</p>
+                  </div>
+                @endforeach
+              </div>
+              @if ($profe->comentarios->count() > 1)
+              <button style="border: 0; height: 20%; background: #444; top: auto" class="carousel-control-prev" type="button" data-target="#carousel{{$profe->id}}" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </button>
+              <button style="border: 0; height: 20%; background: #444; top: auto" class="carousel-control-next" type="button" data-target="#carousel{{$profe->id}}" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </button>
+              @endif
+            </div>
+          </div>
+          @endif
         </div>
       @endforeach
     </div>

@@ -10,7 +10,7 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-4">
+      <div class="col-lg-4">
         <div class="card mx-3">
           <h5 class="card-header bg-primary">Profesor a evaluar</h5>
           <div class="card-body">
@@ -19,7 +19,7 @@
           </div>
           </div>
       </div>
-      <div class="col-8">
+      <div class="col-lg-8">
         <form method="POST" action="/evalua/{{$profesor->id}}">
           <div class="form-group">
             <label for="nombre">Nombre *</label>
@@ -34,8 +34,8 @@
             <input type="number" id="calificacion" min="0" max="10" step="1" class="form-control" aria-describedby="calificacion" name="calificacion" required>
           </div>
           <div class="form-group">
-            <label for="comentario">Comentario</label>
-            <textarea class="form-control" id="comentario" rows="3" name="comentario"></textarea>
+            <label for="comentario">Comentario *</label>
+            <textarea class="form-control" id="comentario" rows="3" name="comentario" required></textarea>
           </div>
           <button type="submit" class="btn btn-primary float-right">Enviar</button>
           @csrf
