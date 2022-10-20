@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfesorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +13,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('profesores');
-});
+Route::get('/', [ProfesorController::class, 'index']);
+Route::get('evalua/{id}', [ProfesorController::class, 'evalua']);
+Route::post('evalua/{id}', [ProfesorController::class, 'evaluaForm']);

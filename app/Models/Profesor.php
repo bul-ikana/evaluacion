@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Profesor extends Model
 {
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use HasFactory;
     protected $connection = 'universidad';
     protected $table = 'profesores';
@@ -21,7 +22,7 @@ class Profesor extends Model
     protected function promedio(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->comentarios->avg('calificacion'),
+            get: fn () => number_format($this->comentarios->avg('calificacion'), 1, '.'),
         );
     }
 }
