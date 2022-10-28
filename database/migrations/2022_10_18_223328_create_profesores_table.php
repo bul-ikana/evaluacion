@@ -13,7 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-          Schema::connection('universidad')->create('profesores', function (Blueprint $table) {
+        $connection = env('APP_ENV') === "testing" ? "sqlite" : "universidad";
+
+        Schema::connection($connection)->create('profesores', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
             $table->string('cedula');

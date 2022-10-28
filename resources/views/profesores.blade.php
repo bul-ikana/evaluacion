@@ -16,7 +16,7 @@
     </div>
   @endif
 
-  <div class="container">
+  <div class="container pb-5">
     <div class="row">
       @foreach($profesores as $profe)
         <div class="col-xl-4 col-md-6">

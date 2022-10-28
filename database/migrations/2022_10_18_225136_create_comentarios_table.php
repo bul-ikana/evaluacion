@@ -13,7 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('comentarios', function (Blueprint $table) {
+        $profesores_table = env('APP_ENV') === "testing" ? "profesores" : "Universidad.profesores";
+
+        Schema::create('comentarios', function (Blueprint $table) use ($profesores_table) {
             $table->id();
             $table->unsignedBigInteger('profesor_id');
             $table->string('nombre_estudiante');
@@ -25,7 +27,7 @@ return new class extends Migration
              $table
                 ->foreign('profesor_id')
                 ->references('id')
-                ->on('Universidad.profesores');
+                ->on($profesores_table);
         });
     }
 
