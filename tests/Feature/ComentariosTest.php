@@ -42,4 +42,34 @@ class ComentariosTest extends TestCase
 
         $this-> assertEquals($comentario, $profesor->comentarios()->orderByDesc('created_at')->first()->comentario);
     }
+
+    public function testPuedoPublicarUnComentarioSinPalabrasRestringidas()
+    {
+        $profesor = Profesor::all()->random();
+        $comentario = "comentario sin palabras restringidas";
+
+        $response = $this->post("evalua/". $profesor->id, [
+            'nombre' => 'nombre',
+            'correo' => 'nombre@correo.com',
+            'calificacion' => '10',
+            'comentario' => $comentario,
+        ]);
+
+        $response->assertSessionHas('status');
+    }
+    
+    public function testNoPuedoPublicarUnComentarioConPalabrasRestringidas()
+    {
+        $profesor = Profesor::all()->random();
+        $comentario = "pinche profe pendejo";
+
+        $response = $this->post("evalua/". $profesor->id, [
+            'nombre' => 'nombre',
+            'correo' => 'nombre@correo.com',
+            'calificacion' => '10',
+            'comentario' => $comentario,
+        ]);
+
+        $response->assertSessionHas('error');
+    }
 }
