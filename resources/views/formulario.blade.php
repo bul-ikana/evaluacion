@@ -15,7 +15,14 @@
           <h5 class="card-header bg-primary">Profesor a evaluar</h5>
           <div class="card-body">
             <h5 class="card-title">{{$profesor->nombre}}</h5>
-            <p class="card-text">Profesor de la facultad de economía.</p>
+            <p class="card-text">
+              Profesor de la facultad de economía.
+              <ul style>
+                @foreach($profesor->materias as $materia)
+                <li>{{$materia}}</li>
+                @endforeach
+              </ul>
+            </p>
           </div>
           </div>
       </div>

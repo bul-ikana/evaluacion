@@ -33,6 +33,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profesores');
+        $connection = env('APP_ENV') === "testing" ? "sqlite" : "universidad";
+
+        Schema::connection($connection)->dropIfExists('profesores');
     }
 };

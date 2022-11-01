@@ -19,13 +19,22 @@
   <div class="container pb-5">
     <div class="row">
       @foreach($profesores as $profe)
-        <div class="col-xl-4 col-md-6">
+        <div class="col-xl-4 col-md-6 d-flex align-items-stretch">
           <div class="card mx-3 mb-0 mt-3">
-            <div class="card-body">
+            <div class="card-body d-flex flex-column">
               <h5 class="card-title">{{$profe->nombre}} <span class="badge badge-secondary float-right"> {{$profe->promedio}}</span></h5>
-              <p class="card-text">Profesor de la facultad de economía.</p>
-              <a href="evalua/{{$profe->id}}" class="btn btn-primary float-right">Evalúa</a>
-              <a href="#" class="float-left pt-2" data-toggle="collapse" data-target="#collapse{{$profe->id}}" aria-expanded="false" aria-controls="collapse">{{$profe->comentarios->count()}} {{Str::plural('Comentario', $profe->comentarios->count())}}</a>
+              <p class="card-text">
+                Profesor de la facultad de economía.
+                <ul style>
+                  @foreach($profe->materias as $materia)
+                  <li>{{$materia}}</li>
+                  @endforeach
+                </ul>
+              </p>
+              <div class="mt-auto">
+                <a href="evalua/{{$profe->id}}" class="btn btn-primary float-right align-bottom">Evalúa</a>
+                <a href="#" class="float-left pt-2 align-bottom" data-toggle="collapse" data-target="#collapse{{$profe->id}}" aria-expanded="false" aria-controls="collapse">{{$profe->comentarios->count()}} {{Str::plural('Comentario', $profe->comentarios->count())}}</a>
+              </div>
             </div>
           </div>
           @if ($profe->comentarios->count() > 0)

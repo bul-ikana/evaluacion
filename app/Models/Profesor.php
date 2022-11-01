@@ -17,12 +17,24 @@ class Profesor extends Model
     {
         return $this->hasMany(Comentario::class);
     }
+    
+    protected function cursos()
+    {
+        return $this->hasMany(Curso::class);
+    }
 
     protected function promedio(): Attribute
     {
         $promedio = $this->comentarios->avg('calificacion');
         return Attribute::make(
-            get: fn () => $promedio ? number_format($promedio, 1, '.') : '-',
+            get: fn() => $promedio ? number_format($promedio, 1, '.') : '-',
+        );
+    }
+
+    protected function materias(): Attribute
+    {
+        return Attribute::make(
+            get: fn() => $this->cursos->map(fn($m) => $m->materia->nombre),
         );
     }
 }

@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ProfesorSeeder::class,
             ComentarioSeeder::class,
+            CursosSeeder::class,
         ]);
     }
 }

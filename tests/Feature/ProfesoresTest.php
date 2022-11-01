@@ -22,4 +22,15 @@ class ProfesoresTest extends TestCase
 
         $this->assertEquals(Profesor::count(), $profesores_on_response);
     }
+
+    public function testPuedoVerLasMateriasQueEnseñaCadaProfesor()
+    {
+        $response = $this->get('/');
+        $profesores = $response->getOriginalContent()->getData()['profesores'];
+        $profesor = $profesores->random();
+        $materias_on_profesor = count($profesor->materias);
+        
+
+        $this->assertEquals(Profesor::find($profesor->id)->materias->count(), $materias_on_profesor);
+    }
 }
