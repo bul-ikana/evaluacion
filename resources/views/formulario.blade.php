@@ -13,6 +13,7 @@
       <div class="col-lg-4">
         <div class="card mx-3">
           <h5 class="card-header bg-primary">Profesor a evaluar</h5>
+          <img class="card-img-top" src="{{asset('/img/' . $profesor->foto)}}"/>
           <div class="card-body">
             <h5 class="card-title">{{$profesor->nombre}}</h5>
             <p class="card-text">

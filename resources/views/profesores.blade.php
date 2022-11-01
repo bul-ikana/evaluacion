@@ -29,6 +29,7 @@
       @foreach($profesores as $profe)
         <div class="col-xl-4 col-md-6">
           <div class="card mx-3 mb-0 mt-3">
+            <img class="card-img-top" src="{{asset('/img/' . $profe->foto)}}"/>
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">{{$profe->nombre}} <span class="badge badge-secondary float-right"> {{$profe->promedio}}</span></h5>
               <p class="card-text">
