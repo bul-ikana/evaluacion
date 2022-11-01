@@ -15,11 +15,19 @@
       </button>
     </div>
   @endif
+  @if (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show">
+      {{ session('error') }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  @endif
 
   <div class="container pb-5">
     <div class="row">
       @foreach($profesores as $profe)
-        <div class="col-xl-4 col-md-6 d-flex align-items-stretch">
+        <div class="col-xl-4 col-md-6">
           <div class="card mx-3 mb-0 mt-3">
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">{{$profe->nombre}} <span class="badge badge-secondary float-right"> {{$profe->promedio}}</span></h5>

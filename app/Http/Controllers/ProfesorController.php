@@ -20,13 +20,18 @@ class ProfesorController extends Controller
 
     public function evaluaForm(Request $request, $id)
     {
-        Comentario::create([
+        $comentario = Comentario::create([
             'profesor_id' => $id,
             'nombre_estudiante' =>  $request->input('nombre'),
             'correo_estudiante' =>  $request->input('correo'),
             'calificacion' =>  $request->input('calificacion'),
             'comentario' =>  $request->input('comentario'),
         ]);
+
+        if ($comentario->trashed())
+        {
+            return redirect('/')->with('error', 'El comentario no pudo ser publicado');
+        }
 
         return redirect('/')->with('status', 'Tu evaluación ha sido registrada');
     }
