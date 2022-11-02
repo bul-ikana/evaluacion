@@ -43,7 +43,7 @@
           </div>
           <div class="form-group">
             <label for="comentario">Comentario *</label>
-            <textarea class="form-control" id="comentario" rows="3" name="comentario" required></textarea>
+            <textarea class="form-control" id="comentario" rows="3" name="comentario" maxlength="150" required></textarea>
           </div>
           <button type="submit" class="btn btn-primary float-right">Enviar</button>
           @csrf

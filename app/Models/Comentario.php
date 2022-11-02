@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Comentario extends Model
 {
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use HasFactory;
     use SoftDeletes;
 
@@ -32,5 +33,10 @@ class Comentario extends Model
                 $model->deleted_at = now();
             }
         });
+    }
+
+    public function profesor()
+    {
+        return $this->belongsTo(Profesor::class);
     }
 }
