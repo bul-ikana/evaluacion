@@ -61,7 +61,7 @@ class ComentariosTest extends TestCase
     public function testNoPuedoPublicarUnComentarioConPalabrasRestringidas()
     {
         $profesor = Profesor::all()->random();
-        $comentario = "pinche profe pendejo";
+        $comentario = "PINCHE profe pendejo";
 
         $response = $this->post("evalua/". $profesor->id, [
             'nombre' => 'nombre',

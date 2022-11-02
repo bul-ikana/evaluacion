@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             ProfesorSeeder::class,
             ComentarioSeeder::class,
             CursosSeeder::class,
+            EmpleadosSeeder::class,
         ]);
     }
 }

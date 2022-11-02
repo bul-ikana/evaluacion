@@ -16,19 +16,19 @@ class Comentario extends Model
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
     const RESTRICTED_WORDS = [
-        'pendej',
-        'cabron',
-        'culer',
-        'ching',
-        'pinche',
-        'verga',
-        'wey',
+        'pendejo',  'pendeja',
+        'cabron',   'cabrona',
+        'culero',   'culera',
+        'mamon',    'mamona',
+        'ching',    'pinche',
+        'verga',    'wey',
+        'mamada',
     ];
 
     protected static function booted()
     {
         static::creating(function ($model) {
-            if (\Str::contains($model->comentario, self::RESTRICTED_WORDS)){
+            if (\Str::contains(\Str::lower($model->comentario), self::RESTRICTED_WORDS)){
                 $model->deleted_at = now();
             }
         });
